@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Optionnel : style global léger */
+body {
+  @apply bg-privacyx-dark text-slate-100;
+}
+

@@ -1,5 +1,6 @@
 import "./index.css";
 import DevelopersSection from "./components/DevelopersSection";
+import logo from "./assets/logo-prvx.png";
 
 function App() {
   return (
@@ -8,12 +9,18 @@ function App() {
         {/* Header */}
         <header className="flex items-center justify-between mb-10">
           <div className="flex items-center gap-2">
-            <div className="h-9 w-9 rounded-xl bg-privacyx flex items-center justify-center shadow-lg shadow-privacyx/40">
-              <span className="text-xs font-bold text-privacyx-dark">PX</span>
+            {/* LOGO remplacé */}
+            <div className="h-9 w-9 rounded-xl bg-black/40 flex items-center justify-center shadow-lg shadow-privacyx/40">
+              <img
+                src={logo}
+                alt="PrivacyX Logo"
+                className="h-7 w-7 object-contain"
+              />
             </div>
+
             <div>
               <h1 className="text-lg font-semibold tracking-tight">
-                PrivacyX — PXP-102 Identity Pass
+                Privacyx : PXP-102 Identity Pass
               </h1>
               <p className="text-xs text-slate-400">
                 Groth16 on-chain identity primitive for Web3 integrators
@@ -33,7 +40,7 @@ function App() {
               Docs
             </a>
             <a
-              href="https://github.com/privacyx-org/pxp102-dapp"
+              href="https://github.com/privacyx-org/privacyx-identity-pass"
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center rounded-lg border border-slate-700 px-2.5 py-1 text-[11px] text-slate-200 hover:border-privacyx/70 hover:text-privacyx transition"

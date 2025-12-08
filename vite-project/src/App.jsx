@@ -46,7 +46,7 @@ function ThemeToggle({ darkMode, setDarkMode }) {
     <button
       onClick={() => setDarkMode(!darkMode)}
       className={`inline-flex items-center justify-center text-sm px-2 py-1 rounded-xl border transition-colors ${
-        darkMode ? "border-white/10 bg-white/5" : "border-gray-200 bg-white"
+        darkMode ? "border-white/10 bg-white/5" : "border-gray-300 bg-white"
       }`}
       aria-label="Toggle theme"
     >
@@ -59,22 +59,23 @@ function App() {
   const [darkMode, setDarkMode] = useState(true);
 
   const textPrimary = darkMode ? "text-slate-100" : "text-slate-900";
-  const textSecondary = darkMode ? "text-slate-400" : "text-slate-500";
-  const textMuted = darkMode ? "text-slate-500" : "text-slate-500";
-  const borderSubtle = darkMode ? "border-slate-700" : "border-slate-200";
-  const borderStrong = darkMode ? "border-slate-800" : "border-slate-300";
+  const textSecondary = darkMode ? "text-slate-400" : "text-slate-700";
+  const textMuted = darkMode ? "text-slate-500" : "text-slate-700";
+  const bodyText = darkMode ? "text-slate-300" : "text-slate-800";
+  const borderSubtle = darkMode ? "border-slate-700" : "border-slate-300";
+  const borderStrong = darkMode ? "border-slate-800" : "border-slate-400";
   const cardBg = darkMode ? "bg-black/40" : "bg-white";
   const sectionBg = darkMode ? "bg-black/40" : "bg-white";
   const headerShadow = darkMode
     ? "shadow-lg shadow-privacyx/40"
-    : "shadow-md shadow-gray-300/40";
-  const statusBadgeBorder = darkMode ? "border-slate-600" : "border-slate-300";
-  const statusBadgeText = darkMode ? "text-slate-200" : "text-slate-700";
+    : "shadow-md shadow-neutral-400/40";
+  const statusBadgeBorder = darkMode ? "border-slate-600" : "border-slate-400";
+  const statusBadgeText = darkMode ? "text-slate-200" : "text-slate-800";
 
   return (
     <div
       className={`min-h-screen w-full overflow-x-hidden break-words transition-colors duration-300 ${textPrimary}`}
-      style={{ backgroundColor: darkMode ? "#101010" : "#f5f5f5" }}
+      style={{ backgroundColor: darkMode ? "#101010" : "#f3f3f3" }}
     >
       <div className="max-w-6xl w-full mx-auto px-4 sm:px-6 py-6 sm:py-10">
         {/* Header */}
@@ -115,8 +116,8 @@ function App() {
               rel="noreferrer"
               className={`inline-flex items-center rounded-lg border px-2.5 py-1 text-[11px] transition max-w-full ${
                 darkMode
-                  ? "border-slate-700 text-slate-200 hover:border-slate-400 hover:text-slate-100"
-                  : "border-slate-300 text-slate-800 hover:border-slate-500 hover:text-slate-900 bg-white"
+                  ? "border-slate-700 text-slate-200 hover:border-slate-300 hover:text-slate-50"
+                  : "border-slate-400 text-slate-900 hover:border-slate-600 hover:text-slate-900 bg-white"
               }`}
             >
               Docs
@@ -127,8 +128,8 @@ function App() {
               rel="noreferrer"
               className={`inline-flex items-center rounded-lg border px-2.5 py-1 text-[11px] transition max-w-full ${
                 darkMode
-                  ? "border-slate-700 text-slate-200 hover:border-slate-400 hover:text-slate-100"
-                  : "border-slate-300 text-slate-800 hover:border-slate-500 hover:text-slate-900 bg-white"
+                  ? "border-slate-700 text-slate-200 hover:border-slate-300 hover:text-slate-50"
+                  : "border-slate-400 text-slate-900 hover:border-slate-600 hover:text-slate-900 bg-white"
               }`}
             >
               GitHub
@@ -149,8 +150,8 @@ function App() {
                 rel="noreferrer"
                 className={`inline-flex items-center rounded-lg border px-2 py-1 text-[11px] transition ${
                   darkMode
-                    ? "border-slate-700 text-slate-200 hover:border-slate-400 hover:text-slate-100"
-                    : "border-slate-300 text-slate-800 hover:border-slate-500 hover:text-slate-900 bg-white"
+                    ? "border-slate-700 text-slate-200 hover:border-slate-300 hover:text-slate-50"
+                    : "border-slate-400 text-slate-900 hover:border-slate-600 hover:text-slate-900 bg-white"
                 }`}
               >
                 Docs
@@ -161,8 +162,8 @@ function App() {
                 rel="noreferrer"
                 className={`inline-flex items-center rounded-lg border px-2 py-1 text-[11px] transition ${
                   darkMode
-                    ? "border-slate-700 text-slate-200 hover:border-slate-400 hover:text-slate-100"
-                    : "border-slate-300 text-slate-800 hover:border-slate-500 hover:text-slate-900 bg-white"
+                    ? "border-slate-700 text-slate-200 hover:border-slate-300 hover:text-slate-50"
+                    : "border-slate-400 text-slate-900 hover:border-slate-600 hover:text-slate-900 bg-white"
                 }`}
               >
                 GitHub
@@ -189,10 +190,10 @@ function App() {
               <span className="text-privacyx">without leaking who you are</span>.
             </h2>
 
-            <p className="text-sm sm:text-base text-slate-300 leading-relaxed mb-6 max-w-xl">
+            <p className={`text-sm sm:text-base ${bodyText} leading-relaxed mb-6 max-w-xl`}>
               PXP-102 is a generic identity primitive based on Groth16 proofs and
               Merkle roots. It lets you verify{" "}
-              <span className="font-medium text-slate-100">
+              <span className={darkMode ? "font-medium text-slate-100" : "font-medium text-slate-900"}>
                 “this wallet is verified”
               </span>{" "}
               without ever exposing raw identity data on-chain.
@@ -217,25 +218,33 @@ function App() {
               <div
                 className={`rounded-xl border ${borderSubtle} ${cardBg} p-3 w-full`}
               >
-                <p className="text-slate-400 mb-1">Standard</p>
+                <p className={`${darkMode ? "text-slate-400" : "text-slate-700"} mb-1`}>
+                  Standard
+                </p>
                 <p className="font-medium">PXP-102 Identity Pass</p>
-                <p className="text-slate-500 mt-1">Groth16 + Merkle nullifier</p>
+                <p className={darkMode ? "text-slate-500 mt-1" : "text-slate-700 mt-1"}>
+                  Groth16 + Merkle nullifier
+                </p>
               </div>
               <div
                 className={`rounded-xl border ${borderSubtle} ${cardBg} p-3 w-full`}
               >
-                <p className="text-slate-400 mb-1">Network</p>
+                <p className={`${darkMode ? "text-slate-400" : "text-slate-700"} mb-1`}>
+                  Network
+                </p>
                 <p className="font-medium">Ethereum mainnet</p>
-                <p className="text-slate-500 mt-1 text-xs">
+                <p className={`${darkMode ? "text-slate-500" : "text-slate-700"} mt-1 text-xs`}>
                   IdentityPass deployed & initialized
                 </p>
               </div>
               <div
                 className={`rounded-xl border ${borderSubtle} ${cardBg} p-3 w-full`}
               >
-                <p className="text-slate-400 mb-1">Usage model</p>
+                <p className={`${darkMode ? "text-slate-400" : "text-slate-700"} mb-1`}>
+                  Usage model
+                </p>
                 <p className="font-medium">Backend / dApp primitive</p>
-                <p className="text-slate-500 mt-1 text-xs">
+                <p className={`${darkMode ? "text-slate-500" : "text-slate-700"} mt-1 text-xs`}>
                   Status API + direct on-chain calls
                 </p>
               </div>
@@ -245,7 +254,7 @@ function App() {
           {/* Status API card */}
           <div
             id="status-api"
-            className={`rounded-2xl border ${borderSubtle} bg-gradient-to-b from-black/60 to-neutral-900/80 p-4 sm:p-5 shadow-lg shadow-black/40 w-full`}
+            className={`rounded-2xl border ${borderSubtle} bg-gradient-to-b from-neutral-950/80 to-neutral-900/80 p-4 sm:p-5 shadow-lg shadow-black/40 w-full`}
           >
             <h3 className="text-sm font-semibold mb-2 flex flex-wrap items-center gap-2">
               <span>PXP-102 Identity Status API</span>
@@ -255,10 +264,10 @@ function App() {
                 Mainnet
               </span>
             </h3>
-            <p className="text-xs text-slate-300 mb-3">
+            <p className={`text-xs ${bodyText} mb-3`}>
               A minimal HTTP API (Express + privacyx-sdk) that lets integrators:
             </p>
-            <ul className="list-disc list-inside text-xs text-slate-300 space-y-1 mb-3">
+            <ul className={`list-disc list-inside text-xs ${bodyText} space-y-1 mb-3`}>
               <li>Read the current Merkle root for an issuer</li>
               <li>Check whether a nullifier has already been used</li>
               <li>Integrate PXP-102 in KYC / access-control flows</li>
@@ -272,7 +281,7 @@ function App() {
                 className={`text-[11px] ${cardBg} border ${borderSubtle} rounded-xl p-3 whitespace-pre-wrap break-all`}
               >
 {`curl -H "x-api-key: YOUR_API_KEY" \
-  "https://identitypass-api.privacyx.tech/pxp-102/status/default"`}
+  "https://identitypass-api.privacyx.tech/pxp-102/status?issuer=0xISSUER_BYTES32&nullifier=0xNULLIFIER_BYTES32"`}
               </pre>
             </div>
 
@@ -298,12 +307,17 @@ function App() {
         <section className="grid gap-8 md:grid-cols-2 mb-10 sm:mb-12 w-full">
           <div className="w-full">
             <h3 className="text-lg font-semibold mb-3">How PXP-102 works</h3>
-            <div className="space-y-3 text-sm text-slate-300">
+            <div className={`space-y-3 text-sm ${bodyText}`}>
               <p>
                 PXP-102 is based on a{" "}
-                <span className="text-slate-100">Groth16 circuit</span> and an{" "}
-                <span className="text-slate-100">on-chain Merkle tree</span> of
-                issuer-verified identities.
+                <span className={darkMode ? "text-slate-100" : "text-slate-900"}>
+                  Groth16 circuit
+                </span>{" "}
+                and an{" "}
+                <span className={darkMode ? "text-slate-100" : "text-slate-900"}>
+                  on-chain Merkle tree
+                </span>{" "}
+                of issuer-verified identities.
               </p>
               <ol className="list-decimal list-inside space-y-1">
                 <li>An issuer verifies a user off-chain.</li>
@@ -327,14 +341,14 @@ function App() {
 
           <div id="integrations" className="w-full">
             <h3 className="text-lg font-semibold mb-3">Integration patterns</h3>
-            <div className="space-y-3 text-sm text-slate-300">
+            <div className={`space-y-3 text-sm ${bodyText}`}>
               <div
                 className={`rounded-xl border ${borderSubtle} ${cardBg} p-3`}
               >
                 <h4 className="text-sm font-semibold mb-1">
                   A) Web2 / Web3 access-control
                 </h4>
-                <p className="text-xs text-slate-300">
+                <p className="text-xs">
                   Use the Status API to gate access to dashboards, SaaS, or
                   internal tools: if the nullifier is used, the wallet has
                   proven its identity at least once.
@@ -346,7 +360,7 @@ function App() {
                 <h4 className="text-sm font-semibold mb-1">
                   B) dApps & DeFi frontends
                 </h4>
-                <p className="text-xs text-slate-300">
+                <p className="text-xs">
                   Call the IdentityPass contract directly from your backend or
                   relayer, while keeping the user experience on your own UI.
                 </p>
@@ -357,7 +371,7 @@ function App() {
                 <h4 className="text-sm font-semibold mb-1">
                   C) Issuer dashboards
                 </h4>
-                <p className="text-xs text-slate-300">
+                <p className="text-xs">
                   Build an issuer-side UI to manage Merkle roots, monitor
                   nullifiers, and audit identity passes.
                 </p>
@@ -373,12 +387,12 @@ function App() {
           <h3 className="text-lg font-semibold mb-2">
             Integrate PXP-102 in 3 steps
           </h3>
-          <p className="text-xs sm:text-sm text-slate-300 mb-3">
+          <p className={`text-xs sm:text-sm ${bodyText} mb-3`}>
             This is the minimal path from “user is verified by an issuer” to
             “my backend can gate access using a nullifier”.
           </p>
 
-          <ol className="list-decimal list-inside space-y-2 text-xs sm:text-sm text-slate-300">
+          <ol className={`list-decimal list-inside space-y-2 text-xs sm:text-sm ${bodyText}`}>
             <li>
               <span className="font-semibold">Issuer verifies the user.</span>{" "}
               Off-chain KYC / identity flow, then the issuer updates its Merkle
@@ -411,7 +425,10 @@ function App() {
           </p>
         </section>
 
-        <DevelopersSection />
+        {/* DevelopersSection wrapped to control overflow of long code blocks */}
+        <div className="w-full overflow-x-auto md:overflow-visible">
+          <DevelopersSection />
+        </div>
 
         {/* Production & security notes */}
         <section
@@ -421,7 +438,7 @@ function App() {
           <h3 className="text-lg font-semibold mb-2">
             Production & security notes
           </h3>
-          <p className="text-xs sm:text-sm text-slate-300 mb-3">
+          <p className={`text-xs sm:text-sm ${bodyText} mb-3`}>
             This playground dApp talks directly to the public PXP-102 Status API
             at{" "}
             <span className="font-mono text-privacyx">
@@ -431,7 +448,7 @@ function App() {
             backend and never expose long-lived API keys in frontend code.
           </p>
 
-          <div className="grid gap-4 md:grid-cols-2 text-xs sm:text-sm text-slate-300 w-full">
+          <div className={`grid gap-4 md:grid-cols-2 text-xs sm:text-sm ${bodyText} w-full`}>
             <div className="space-y-2">
               <h4 className="text-sm font-semibold">Frontend config (Vite)</h4>
               <ol className="list-decimal list-inside space-y-1">

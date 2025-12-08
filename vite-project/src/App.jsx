@@ -9,7 +9,7 @@ function App() {
         {/* Header */}
         <header className="flex items-center justify-between mb-10">
           <div className="flex items-center gap-2">
-            {/* LOGO remplacé */}
+            {/* LOGO */}
             <div className="h-9 w-9 rounded-xl bg-black/40 flex items-center justify-center shadow-lg shadow-privacyx/40">
               <img
                 src={logo}
@@ -20,7 +20,7 @@ function App() {
 
             <div>
               <h1 className="text-lg font-semibold tracking-tight">
-                Privacyx : PXP-102 Identity Pass
+                Privacyx · PXP-102 Identity Pass
               </h1>
               <p className="text-xs text-slate-400">
                 Groth16 on-chain identity primitive for Web3 integrators
@@ -40,7 +40,7 @@ function App() {
               Docs
             </a>
             <a
-              href="https://github.com/privacyx-org/privacyx-identity-pass"
+              href="https://github.com/Privacyx-org/privacyx-identity-pass"
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center rounded-lg border border-slate-700 px-2.5 py-1 text-[11px] text-slate-200 hover:border-privacyx/70 hover:text-privacyx transition"
@@ -132,11 +132,11 @@ function App() {
 
             <div className="mb-3">
               <p className="text-[11px] text-slate-400 mb-1">
-                Example: check demo issuer / nullifier
+                Example (reference deployment: identitypass-api.privacyx.tech)
               </p>
               <pre className="text-[11px] bg-black/70 border border-slate-700 rounded-xl p-3 overflow-x-auto">
 {`curl -H "x-api-key: YOUR_API_KEY" \\
-  "https://your-domain.com/pxp-102/status/default"`}
+  "https://identitypass-api.privacyx.tech/pxp-102/status/default"`}
               </pre>
             </div>
 
@@ -274,9 +274,13 @@ function App() {
             Production & security notes
           </h3>
           <p className="text-xs sm:text-sm text-slate-300 mb-3">
-            This demo dApp talks directly to a local PXP-102 Status API.
-            In production, you should route calls through your own backend and
-            never expose long-lived API keys in frontend code.
+            This playground dApp talks directly to the public PXP-102 Status API
+            at{" "}
+            <span className="font-mono text-privacyx">
+              https://identitypass-api.privacyx.tech
+            </span>
+            . In your own integrations, you should route calls through your own
+            backend and never expose long-lived API keys in frontend code.
           </p>
 
           <div className="grid gap-4 md:grid-cols-2 text-xs sm:text-sm text-slate-300">
@@ -288,7 +292,7 @@ function App() {
                   <span className="font-mono text-privacyx">
                     VITE_PXP102_STATUS_API_BASE_URL
                   </span>{" "}
-                  to your public backend URL, e.g.:{" "}
+                  to your backend or gateway URL, e.g.:{" "}
                   <span className="font-mono">
                     https://api.your-domain.com
                   </span>
@@ -303,7 +307,7 @@ function App() {
                   <span className="font-mono">
                     $VITE_PXP102_STATUS_API_BASE_URL/pxp-102/status
                   </span>{" "}
-                  instead of the local proxy.
+                  instead of the reference endpoint.
                 </li>
               </ol>
             </div>
@@ -330,7 +334,7 @@ function App() {
           </div>
 
           <p className="mt-3 text-[11px] text-slate-500">
-            In short: this playground is ideal for local integration tests.
+            In short: this playground is ideal for integration tests and demos.
             In production, always treat PXP-102 as a backend primitive and keep
             secrets away from the browser.
           </p>
@@ -350,4 +354,3 @@ function App() {
 }
 
 export default App;
-

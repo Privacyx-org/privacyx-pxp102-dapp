@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./index.css";
-import DevelopersSection from "./components/DevelopersSection";
 import logo from "./assets/logo-prvx.png";
 
 // Icône Soleil (Light mode) – style Privacyx #4befa0
@@ -190,10 +189,16 @@ function App() {
               <span className="text-privacyx">without leaking who you are</span>.
             </h2>
 
-            <p className={`text-sm sm:text-base ${bodyText} leading-relaxed mb-6 max-w-xl`}>
+            <p
+              className={`text-sm sm:text-base ${bodyText} leading-relaxed mb-6 max-w-xl`}
+            >
               PXP-102 is a generic identity primitive based on Groth16 proofs and
               Merkle roots. It lets you verify{" "}
-              <span className={darkMode ? "font-medium text-slate-100" : "font-medium text-slate-900"}>
+              <span
+                className={
+                  darkMode ? "font-medium text-slate-100" : "font-medium text-slate-900"
+                }
+              >
                 “this wallet is verified”
               </span>{" "}
               without ever exposing raw identity data on-chain.
@@ -206,7 +211,8 @@ function App() {
               >
                 View integration options
               </a>
-              <a
+            <
+              a
                 href="#status-api"
                 className={`inline-flex items-center justify-center rounded-xl border ${borderSubtle} ${cardBg} px-4 py-2 text-sm ${textPrimary} hover:border-slate-400 transition w-full sm:w-auto`}
               >
@@ -218,33 +224,45 @@ function App() {
               <div
                 className={`rounded-xl border ${borderSubtle} ${cardBg} p-3 w-full`}
               >
-                <p className={`${darkMode ? "text-slate-400" : "text-slate-700"} mb-1`}>
+                <p
+                  className={`${darkMode ? "text-slate-400" : "text-slate-700"} mb-1`}
+                >
                   Standard
                 </p>
                 <p className="font-medium">PXP-102 Identity Pass</p>
-                <p className={darkMode ? "text-slate-500 mt-1" : "text-slate-700 mt-1"}>
+                <p
+                  className={darkMode ? "text-slate-500 mt-1" : "text-slate-700 mt-1"}
+                >
                   Groth16 + Merkle nullifier
                 </p>
               </div>
               <div
                 className={`rounded-xl border ${borderSubtle} ${cardBg} p-3 w-full`}
               >
-                <p className={`${darkMode ? "text-slate-400" : "text-slate-700"} mb-1`}>
+                <p
+                  className={`${darkMode ? "text-slate-400" : "text-slate-700"} mb-1`}
+                >
                   Network
                 </p>
                 <p className="font-medium">Ethereum mainnet</p>
-                <p className={`${darkMode ? "text-slate-500" : "text-slate-700"} mt-1 text-xs`}>
+                <p
+                  className={`${darkMode ? "text-slate-500" : "text-slate-700"} mt-1 text-xs`}
+                >
                   IdentityPass deployed & initialized
                 </p>
               </div>
               <div
                 className={`rounded-xl border ${borderSubtle} ${cardBg} p-3 w-full`}
               >
-                <p className={`${darkMode ? "text-slate-400" : "text-slate-700"} mb-1`}>
+                <p
+                  className={`${darkMode ? "text-slate-400" : "text-slate-700"} mb-1`}
+                >
                   Usage model
                 </p>
                 <p className="font-medium">Backend / dApp primitive</p>
-                <p className={`${darkMode ? "text-slate-500" : "text-slate-700"} mt-1 text-xs`}>
+                <p
+                  className={`${darkMode ? "text-slate-500" : "text-slate-700"} mt-1 text-xs`}
+                >
                   Status API + direct on-chain calls
                 </p>
               </div>
@@ -267,7 +285,9 @@ function App() {
             <p className={`text-xs ${bodyText} mb-3`}>
               A minimal HTTP API (Express + privacyx-sdk) that lets integrators:
             </p>
-            <ul className={`list-disc list-inside text-xs ${bodyText} space-y-1 mb-3`}>
+            <ul
+              className={`list-disc list-inside text-xs ${bodyText} space-y-1 mb-3`}
+            >
               <li>Read the current Merkle root for an issuer</li>
               <li>Check whether a nullifier has already been used</li>
               <li>Integrate PXP-102 in KYC / access-control flows</li>
@@ -380,60 +400,115 @@ function App() {
           </div>
         </section>
 
-        {/* Quick integration guide */}
+        {/* Developer integration examples – replaces old DevelopersSection with fully responsive content */}
         <section
+          id="developers"
           className={`mb-10 sm:mb-12 rounded-2xl border ${borderStrong} ${sectionBg} p-4 sm:p-5 w-full`}
         >
-          <h3 className="text-lg font-semibold mb-2">
-            Integrate PXP-102 in 3 steps
-          </h3>
-          <p className={`text-xs sm:text-sm ${bodyText} mb-3`}>
-            This is the minimal path from “user is verified by an issuer” to
-            “my backend can gate access using a nullifier”.
+          <h3 className="text-lg font-semibold mb-3">Developer integration examples</h3>
+          <p className={`text-xs sm:text-sm ${bodyText} mb-4`}>
+            Perfect for Web2 backends, gateways, and dashboards. You call a simple
+            HTTP endpoint, we handle the on-chain calls.
           </p>
 
-          <ol className={`list-decimal list-inside space-y-2 text-xs sm:text-sm ${bodyText}`}>
-            <li>
-              <span className="font-semibold">Issuer verifies the user.</span>{" "}
-              Off-chain KYC / identity flow, then the issuer updates its Merkle
-              root on the IdentityPass contract.
-            </li>
-            <li>
-              <span className="font-semibold">User generates a Groth16 proof.</span>{" "}
-              The wallet or your backend generates a proof with{" "}
-              <span className="font-mono text-privacyx">issuer</span>,{" "}
-              <span className="font-mono text-privacyx">nullifier</span>, and
-              Merkle path.
-            </li>
-            <li>
-              <span className="font-semibold">Your backend checks the nullifier.</span>{" "}
-              After a successful on-chain verification, your backend can simply
-              call the PXP-102 Status API:
+          <div className="grid gap-4 md:grid-cols-2">
+            {/* HTTP + curl */}
+            <div className="space-y-2">
+              <h4 className="text-sm font-semibold">HTTP status check (curl)</h4>
               <pre
-                className={`mt-2 text-[11px] ${cardBg} border ${borderSubtle} rounded-xl p-3 whitespace-pre-wrap break-all font-mono`}
+                className={`text-[11px] ${cardBg} border ${borderSubtle} rounded-xl p-3 whitespace-pre-wrap break-all font-mono`}
               >
-{`GET /pxp-102/status?issuer=0xISSUER_BYTES32&nullifier=0xNULLIFIER_BYTES32
-→ { currentRoot, nullifierUsed, ... }`}
+{`curl -H "x-api-key: YOUR_API_KEY" \
+  "https://identitypass-api.privacyx.tech/pxp-102/status?issuer=0xISSUER_BYTES32&nullifier=0xNULLIFIER_BYTES32"`}
               </pre>
-            </li>
-          </ol>
+            </div>
 
-          <p className="mt-3 text-[11px] text-slate-500">
-            If <span className="font-mono">nullifierUsed === true</span>, the
-            wallet has already proven its identity for this flow. You can then
-            safely gate dashboards, DeFi actions, or issuer-specific features.
+            {/* Axios example */}
+            <div className="space-y-2">
+              <h4 className="text-sm font-semibold">Node.js / Axios</h4>
+              <pre
+                className={`text-[11px] ${cardBg} border ${borderSubtle} rounded-xl p-3 whitespace-pre-wrap break-all font-mono`}
+              >
+{`import axios from "axios";
+
+const BASE_URL = "https://identitypass-api.privacyx.tech";
+
+async function checkIdentityStatus(issuerHex, nullifierHex) {
+  const res = await axios.get(\`\${BASE_URL}/pxp-102/status\`, {
+    headers: {
+      "x-api-key": process.env.PXP102_API_KEY, // ⚠️ keep this server-side in prod
+    },
+    params: {
+      issuer: issuerHex,
+      nullifier: nullifierHex,
+    },
+  });
+
+  return res.data; // { currentRoot, nullifierUsed, ... }
+}`}
+              </pre>
+            </div>
+          </div>
+
+          <p className="mt-4 text-[11px] sm:text-xs text-slate-500">
+            ⚠️ In production, never expose your API key in frontend code. Keep API
+            calls on your backend.
           </p>
-        </section>
 
-        {/* DevelopersSection wrapped to control overflow of long code blocks */}
-        <div className="w-full overflow-x-auto md:overflow-visible">
-          <DevelopersSection />
-        </div>
+          <div className="mt-6 space-y-3">
+            <h4 className="text-sm font-semibold">
+              Direct on-chain integration with IdentityPass
+            </h4>
+            <p className={`text-xs sm:text-sm ${bodyText}`}>
+              Use PXP-102 as a pure on-chain primitive: directly query the IdentityPass
+              contract from Node.js, workers, or backend services.
+            </p>
+            <pre
+              className={`text-[11px] ${cardBg} border ${borderSubtle} rounded-xl p-3 whitespace-pre-wrap break-all font-mono`}
+            >
+{`import { JsonRpcProvider, toBeHex } from "ethers";
+import { IdentityPass, parsePubSignals } from "privacyx-sdk";
+import { readFile } from "node:fs/promises";
+
+const provider = new JsonRpcProvider(process.env.RPC_URL);
+const idPass = new IdentityPass({
+  chainId: 1,
+  provider,
+  address: "0x2b8899B3ACDe63Fd5ABefa0D75d5982622665498",
+});
+
+async function checkDemoIdentity() {
+  const pubSignalsJson = JSON.parse(
+    await readFile("identity_public.example.json", "utf8")
+  );
+
+  const [rootField, issuerField, nullifierField] = parsePubSignals(
+    pubSignalsJson,
+    3
+  );
+
+  const issuerHex = toBeHex(issuerField, 32);
+  const nullifierHex = toBeHex(nullifierField, 32);
+
+  const currentRoot = await idPass.getCurrentRoot(issuerHex);
+  const used = await idPass.isNullifierUsed(nullifierHex);
+
+  console.log("currentRoot:", currentRoot.toString());
+  console.log("nullifierUsed:", used);
+}`}
+            </pre>
+
+            <p className="text-[11px] sm:text-xs text-slate-500 whitespace-pre-wrap break-all">
+{`privacyx-identity-pass / zk / identity_proof.example.json
+privacyx-sdk / examples / identity-pass-local-hardhat.example.mjs`}
+            </p>
+          </div>
+        </section>
 
         {/* Production & security notes */}
         <section
           id="production"
-          className={`mt-8 mb-6 rounded-2xl border ${borderStrong} ${sectionBg} p-4 sm:p-5 w-full`}
+          className={`mt-2 mb-6 rounded-2xl border ${borderStrong} ${sectionBg} p-4 sm:p-5 w-full`}
         >
           <h3 className="text-lg font-semibold mb-2">
             Production & security notes
@@ -448,7 +523,9 @@ function App() {
             backend and never expose long-lived API keys in frontend code.
           </p>
 
-          <div className={`grid gap-4 md:grid-cols-2 text-xs sm:text-sm ${bodyText} w-full`}>
+          <div
+            className={`grid gap-4 md:grid-cols-2 text-xs sm:text-sm ${bodyText} w-full`}
+          >
             <div className="space-y-2">
               <h4 className="text-sm font-semibold">Frontend config (Vite)</h4>
               <ol className="list-decimal list-inside space-y-1">

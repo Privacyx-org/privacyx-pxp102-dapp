@@ -8,9 +8,9 @@ function App() {
       className="min-h-screen text-slate-100"
       style={{ backgroundColor: "#101010" }}
     >
-      <div className="max-w-6xl mx-auto px-4 py-10">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-10">
         {/* Header */}
-        <header className="flex items-center justify-between mb-10">
+        <header className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between mb-8 sm:mb-10">
           <div className="flex items-center gap-2">
             {/* LOGO */}
             <div className="h-9 w-9 rounded-xl bg-black/40 flex items-center justify-center shadow-lg shadow-privacyx/40">
@@ -22,15 +22,16 @@ function App() {
             </div>
 
             <div>
-              <h1 className="text-lg font-semibold tracking-tight">
+              <h1 className="text-base sm:text-lg font-semibold tracking-tight">
                 Privacyx · PXP-102 Identity Pass
               </h1>
-              <p className="text-xs text-slate-400">
+              <p className="text-[11px] sm:text-xs text-slate-400">
                 Groth16 on-chain identity primitive for Web3 integrators
               </p>
             </div>
           </div>
 
+          {/* Desktop nav */}
           <div className="hidden sm:flex items-center gap-3 text-xs text-slate-400">
             <span className="h-1.5 w-1.5 rounded-full bg-privacyx" />
             <span>Mainnet live</span>
@@ -38,7 +39,7 @@ function App() {
               href="https://www.privacyx.tech/pxp-102"
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center rounded-lg border border-slate-700 px-2.5 py-1 text-[11px] text-slate-200 hover:border-privacyx/70 hover:text-privacyx transition"
+              className="inline-flex items-center rounded-lg border border-slate-700 px-2.5 py-1 text-[11px] text-slate-200 hover:border-slate-400 hover:text-slate-100 transition"
             >
               Docs
             </a>
@@ -46,27 +47,51 @@ function App() {
               href="https://github.com/Privacyx-org/privacyx-identity-pass"
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center rounded-lg border border-slate-700 px-2.5 py-1 text-[11px] text-slate-200 hover:border-privacyx/70 hover:text-privacyx transition"
+              className="inline-flex items-center rounded-lg border border-slate-700 px-2.5 py-1 text-[11px] text-slate-200 hover:border-slate-400 hover:text-slate-100 transition"
             >
               GitHub
             </a>
           </div>
+
+          {/* Mobile nav */}
+          <div className="flex sm:hidden items-center gap-2 text-[11px] text-slate-400">
+            <span className="h-1.5 w-1.5 rounded-full bg-privacyx" />
+            <span>Mainnet live</span>
+            <div className="ml-auto flex gap-2">
+              <a
+                href="https://www.privacyx.tech/pxp-102"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center rounded-lg border border-slate-700 px-2 py-1 text-[11px] text-slate-200 hover:border-slate-400 hover:text-slate-100 transition"
+              >
+                Docs
+              </a>
+              <a
+                href="https://github.com/Privacyx-org/privacyx-identity-pass"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center rounded-lg border border-slate-700 px-2 py-1 text-[11px] text-slate-200 hover:border-slate-400 hover:text-slate-100 transition"
+              >
+                GitHub
+              </a>
+            </div>
+          </div>
         </header>
 
         {/* Hero */}
-        <section className="grid gap-8 md:grid-cols-[2fr,1.4fr] mb-12">
+        <section className="grid gap-8 md:grid-cols-[2fr,1.4fr] mb-10 sm:mb-12">
           <div>
-            <p className="inline-flex items-center gap-2 rounded-full border border-privacyx/30 bg-black/40 px-3 py-1 text-xs text-privacyx mb-4">
+            <p className="inline-flex items-center gap-2 rounded-full border border-slate-700 bg-black/40 px-3 py-1 text-[11px] sm:text-xs text-privacyx mb-4">
               <span className="h-1.5 w-1.5 rounded-full bg-privacyx" />
               PXP-102 · Zero-knowledge identity pass
             </p>
 
-            <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight mb-4">
               ZK-powered identity checks,{" "}
               <span className="text-privacyx">without leaking who you are</span>.
             </h2>
 
-            <p className="text-sm sm:text-base text-slate-300 leading-relaxed mb-6">
+            <p className="text-sm sm:text-base text-slate-300 leading-relaxed mb-6 max-w-xl">
               PXP-102 is a generic identity primitive based on Groth16 proofs and
               Merkle roots. It lets you verify{" "}
               <span className="font-medium text-slate-100">
@@ -75,16 +100,16 @@ function App() {
               without ever exposing raw identity data on-chain.
             </p>
 
-            <div className="flex flex-wrap gap-3 mb-8">
+            <div className="flex flex-col sm:flex-row flex-wrap gap-3 mb-8">
               <a
                 href="#integrations"
-                className="inline-flex items-center justify-center rounded-xl bg-privacyx px-4 py-2 text-sm font-semibold text-privacyx-dark shadow-md shadow-privacyx/40 hover:brightness-105 transition"
+                className="inline-flex items-center justify-center rounded-xl bg-privacyx px-4 py-2 text-sm font-semibold text-privacyx-dark shadow-md shadow-privacyx/40 hover:brightness-105 transition w-full sm:w-auto"
               >
                 View integration options
               </a>
               <a
                 href="#status-api"
-                className="inline-flex items-center justify-center rounded-xl border border-slate-600/80 bg-black/40 px-4 py-2 text-sm text-slate-100 hover:border-privacyx/70 transition"
+                className="inline-flex items-center justify-center rounded-xl border border-slate-600/80 bg-black/40 px-4 py-2 text-sm text-slate-100 hover:border-slate-400 transition w-full sm:w-auto"
               >
                 Check status API
               </a>
@@ -116,11 +141,11 @@ function App() {
           {/* Status API card */}
           <div
             id="status-api"
-            className="rounded-2xl border border-privacyx/30 bg-gradient-to-b from-black/60 to-neutral-900/80 p-4 sm:p-5 shadow-lg shadow-black/40"
+            className="rounded-2xl border border-slate-700 bg-gradient-to-b from-black/60 to-neutral-900/80 p-4 sm:p-5 shadow-lg shadow-black/40"
           >
             <h3 className="text-sm font-semibold mb-2 flex items-center gap-2">
               PXP-102 Identity Status API
-              <span className="text-[10px] rounded-full border border-privacyx/40 px-2 py-0.5 text-privacyx bg-black/40">
+              <span className="text-[10px] rounded-full border border-slate-600 px-2 py-0.5 text-slate-200 bg-black/40">
                 Mainnet
               </span>
             </h3>
@@ -160,7 +185,7 @@ function App() {
         </section>
 
         {/* How it works / Integrations */}
-        <section className="grid gap-8 md:grid-cols-2 mb-12">
+        <section className="grid gap-8 md:grid-cols-2 mb-10 sm:mb-12">
           <div>
             <h3 className="text-lg font-semibold mb-3">How PXP-102 works</h3>
             <div className="space-y-3 text-sm text-slate-300">
@@ -226,7 +251,7 @@ function App() {
         </section>
 
         {/* Quick integration guide */}
-        <section className="mb-12 rounded-2xl border border-slate-800 bg-black/40 p-4 sm:p-5">
+        <section className="mb-10 sm:mb-12 rounded-2xl border border-slate-800 bg-black/40 p-4 sm:p-5">
           <h3 className="text-lg font-semibold mb-2">
             Integrate PXP-102 in 3 steps
           </h3>
@@ -345,9 +370,10 @@ function App() {
 
         {/* Footer */}
         <footer className="border-t border-slate-800 pt-4 mt-6 text-[11px] text-slate-500 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
-          <span>Privacyx · Identity layer for Web3 anonymity.</span>
+          <span>PrivacyX · Identity layer for Web3 anonymity.</span>
           <span className="text-slate-600">
-            PXP-102 · Groth16 · mainnet primitive
+            PXP-102 · Groth16 · mainnet primitive ·{" "}
+            <span className="text-privacyx">#4befa0</span>
           </span>
         </footer>
       </div>

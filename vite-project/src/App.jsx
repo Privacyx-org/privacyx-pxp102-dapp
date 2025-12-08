@@ -68,19 +68,18 @@ function App() {
   const headerShadow = darkMode
     ? "shadow-lg shadow-privacyx/40"
     : "shadow-md shadow-gray-300/40";
-  const statusPillBorder = darkMode ? "border-slate-700" : "border-slate-300";
   const statusBadgeBorder = darkMode ? "border-slate-600" : "border-slate-300";
   const statusBadgeText = darkMode ? "text-slate-200" : "text-slate-700";
 
   return (
     <div
-      className={`min-h-screen w-full overflow-x-hidden transition-colors duration-300 ${textPrimary}`}
+      className={`min-h-screen w-full overflow-x-hidden break-words transition-colors duration-300 ${textPrimary}`}
       style={{ backgroundColor: darkMode ? "#101010" : "#f5f5f5" }}
     >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-10">
+      <div className="max-w-6xl w-full mx-auto px-4 sm:px-6 py-6 sm:py-10">
         {/* Header */}
         <header className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between mb-8 sm:mb-10">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 w-full sm:w-auto">
             {/* LOGO */}
             <div
               className={`h-9 w-9 rounded-xl flex items-center justify-center ${cardBg} ${headerShadow}`}
@@ -92,11 +91,13 @@ function App() {
               />
             </div>
 
-            <div>
-              <h1 className="text-base sm:text-lg font-semibold tracking-tight">
+            <div className="min-w-0">
+              <h1 className="text-sm xs:text-base sm:text-lg font-semibold tracking-tight leading-snug">
                 Privacyx · PXP-102 Identity Pass
               </h1>
-              <p className={`text-[11px] sm:text-xs ${textSecondary}`}>
+              <p
+                className={`text-[10px] xs:text-[11px] sm:text-xs ${textSecondary}`}
+              >
                 Groth16 on-chain identity primitive for Web3 integrators
               </p>
             </div>
@@ -104,15 +105,15 @@ function App() {
 
           {/* Desktop nav */}
           <div
-            className={`hidden sm:flex items-center gap-3 text-xs ${textSecondary}`}
+            className={`hidden sm:flex flex-wrap items-center gap-3 text-xs ${textSecondary}`}
           >
             <span className="h-1.5 w-1.5 rounded-full bg-privacyx" />
-            <span>Mainnet live</span>
+            <span className="whitespace-nowrap">Mainnet live</span>
             <a
               href="https://www.privacyx.tech/pxp-102"
               target="_blank"
               rel="noreferrer"
-              className={`inline-flex items-center rounded-lg border px-2.5 py-1 text-[11px] transition ${
+              className={`inline-flex items-center rounded-lg border px-2.5 py-1 text-[11px] transition max-w-full ${
                 darkMode
                   ? "border-slate-700 text-slate-200 hover:border-slate-400 hover:text-slate-100"
                   : "border-slate-300 text-slate-800 hover:border-slate-500 hover:text-slate-900 bg-white"
@@ -124,7 +125,7 @@ function App() {
               href="https://github.com/Privacyx-org/privacyx-identity-pass"
               target="_blank"
               rel="noreferrer"
-              className={`inline-flex items-center rounded-lg border px-2.5 py-1 text-[11px] transition ${
+              className={`inline-flex items-center rounded-lg border px-2.5 py-1 text-[11px] transition max-w-full ${
                 darkMode
                   ? "border-slate-700 text-slate-200 hover:border-slate-400 hover:text-slate-100"
                   : "border-slate-300 text-slate-800 hover:border-slate-500 hover:text-slate-900 bg-white"
@@ -139,8 +140,8 @@ function App() {
           <div
             className={`flex sm:hidden items-center gap-2 text-[11px] ${textSecondary}`}
           >
-            <span className="h-1.5 w-1.5 rounded-full bg-privacyx" />
-            <span>Mainnet live</span>
+            <span className="h-1.5 w-1.5 rounded-full bg-privacyx shrink-0" />
+            <span className="truncate">Mainnet live</span>
             <div className="ml-auto flex gap-2 items-center">
               <a
                 href="https://www.privacyx.tech/pxp-102"
@@ -173,15 +174,17 @@ function App() {
 
         {/* Hero */}
         <section className="grid gap-8 md:grid-cols-[2fr,1.4fr] mb-10 sm:mb-12">
-          <div>
+          <div className="w-full">
             <p
-              className={`inline-flex items-center gap-2 rounded-full border ${borderSubtle} ${cardBg} px-3 py-1 text-[11px] sm:text-xs text-privacyx mb-4`}
+              className={`inline-flex flex-wrap items-center gap-2 rounded-full border ${borderSubtle} ${cardBg} px-3 py-1 text-[11px] sm:text-xs text-privacyx mb-4 max-w-full`}
             >
-              <span className="h-1.5 w-1.5 rounded-full bg-privacyx" />
-              PXP-102 · Zero-knowledge identity pass
+              <span className="h-1.5 w-1.5 rounded-full bg-privacyx shrink-0" />
+              <span className="truncate sm:whitespace-nowrap">
+                PXP-102 · Zero-knowledge identity pass
+              </span>
             </p>
 
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight mb-4">
+            <h2 className="text-xl xs:text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight mb-4 leading-snug">
               ZK-powered identity checks,{" "}
               <span className="text-privacyx">without leaking who you are</span>.
             </h2>
@@ -195,7 +198,7 @@ function App() {
               without ever exposing raw identity data on-chain.
             </p>
 
-            <div className="flex flex-col sm:flex-row flex-wrap gap-3 mb-8">
+            <div className="flex flex-col sm:flex-row flex-wrap gap-3 mb-8 w-full">
               <a
                 href="#integrations"
                 className="inline-flex items-center justify-center rounded-xl bg-privacyx px-4 py-2 text-sm font-semibold text-privacyx-dark shadow-md shadow-privacyx/40 hover:brightness-105 transition w-full sm:w-auto"
@@ -210,16 +213,16 @@ function App() {
               </a>
             </div>
 
-            <div className="grid gap-4 sm:grid-cols-3 text-xs sm:text-sm">
+            <div className="grid gap-4 sm:grid-cols-3 text-xs sm:text-sm w-full">
               <div
-                className={`rounded-xl border ${borderSubtle} ${cardBg} p-3`}
+                className={`rounded-xl border ${borderSubtle} ${cardBg} p-3 w-full`}
               >
                 <p className="text-slate-400 mb-1">Standard</p>
                 <p className="font-medium">PXP-102 Identity Pass</p>
                 <p className="text-slate-500 mt-1">Groth16 + Merkle nullifier</p>
               </div>
               <div
-                className={`rounded-xl border ${borderSubtle} ${cardBg} p-3`}
+                className={`rounded-xl border ${borderSubtle} ${cardBg} p-3 w-full`}
               >
                 <p className="text-slate-400 mb-1">Network</p>
                 <p className="font-medium">Ethereum mainnet</p>
@@ -228,7 +231,7 @@ function App() {
                 </p>
               </div>
               <div
-                className={`rounded-xl border ${borderSubtle} ${cardBg} p-3`}
+                className={`rounded-xl border ${borderSubtle} ${cardBg} p-3 w-full`}
               >
                 <p className="text-slate-400 mb-1">Usage model</p>
                 <p className="font-medium">Backend / dApp primitive</p>
@@ -242,12 +245,12 @@ function App() {
           {/* Status API card */}
           <div
             id="status-api"
-            className={`rounded-2xl border ${borderSubtle} bg-gradient-to-b from-black/60 to-neutral-900/80 p-4 sm:p-5 shadow-lg shadow-black/40`}
+            className={`rounded-2xl border ${borderSubtle} bg-gradient-to-b from-black/60 to-neutral-900/80 p-4 sm:p-5 shadow-lg shadow-black/40 w-full`}
           >
-            <h3 className="text-sm font-semibold mb-2 flex items-center gap-2">
-              PXP-102 Identity Status API
+            <h3 className="text-sm font-semibold mb-2 flex flex-wrap items-center gap-2">
+              <span>PXP-102 Identity Status API</span>
               <span
-                className={`text-[10px] rounded-full border ${statusBadgeBorder} px-2 py-0.5 ${statusBadgeText} ${cardBg}`}
+                className={`text-[10px] rounded-full border ${statusBadgeBorder} px-2 py-0.5 ${statusBadgeText} ${cardBg} whitespace-nowrap`}
               >
                 Mainnet
               </span>
@@ -266,9 +269,9 @@ function App() {
                 Example (reference deployment: identitypass-api.privacyx.tech)
               </p>
               <pre
-                className={`text-[11px] ${cardBg} border ${borderSubtle} rounded-xl p-3 overflow-x-auto`}
+                className={`text-[11px] ${cardBg} border ${borderSubtle} rounded-xl p-3 whitespace-pre-wrap break-all`}
               >
-{`curl -H "x-api-key: YOUR_API_KEY" \\
+{`curl -H "x-api-key: YOUR_API_KEY" \
   "https://identitypass-api.privacyx.tech/pxp-102/status/default"`}
               </pre>
             </div>
@@ -277,7 +280,7 @@ function App() {
               Typical JSON response:
             </div>
             <pre
-              className={`text-[11px] ${cardBg} border ${borderSubtle} rounded-xl p-3 overflow-x-auto`}
+              className={`text-[11px] ${cardBg} border ${borderSubtle} rounded-xl p-3 whitespace-pre-wrap break-all`}
             >
 {`{
   "network": "mainnet",
@@ -292,8 +295,8 @@ function App() {
         </section>
 
         {/* How it works / Integrations */}
-        <section className="grid gap-8 md:grid-cols-2 mb-10 sm:mb-12">
-          <div>
+        <section className="grid gap-8 md:grid-cols-2 mb-10 sm:mb-12 w-full">
+          <div className="w-full">
             <h3 className="text-lg font-semibold mb-3">How PXP-102 works</h3>
             <div className="space-y-3 text-sm text-slate-300">
               <p>
@@ -322,7 +325,7 @@ function App() {
             </div>
           </div>
 
-          <div id="integrations">
+          <div id="integrations" className="w-full">
             <h3 className="text-lg font-semibold mb-3">Integration patterns</h3>
             <div className="space-y-3 text-sm text-slate-300">
               <div
@@ -365,7 +368,7 @@ function App() {
 
         {/* Quick integration guide */}
         <section
-          className={`mb-10 sm:mb-12 rounded-2xl border ${borderStrong} ${sectionBg} p-4 sm:p-5`}
+          className={`mb-10 sm:mb-12 rounded-2xl border ${borderStrong} ${sectionBg} p-4 sm:p-5 w-full`}
         >
           <h3 className="text-lg font-semibold mb-2">
             Integrate PXP-102 in 3 steps
@@ -393,7 +396,7 @@ function App() {
               After a successful on-chain verification, your backend can simply
               call the PXP-102 Status API:
               <pre
-                className={`mt-2 text-[11px] ${cardBg} border ${borderSubtle} rounded-xl p-3 overflow-x-auto font-mono`}
+                className={`mt-2 text-[11px] ${cardBg} border ${borderSubtle} rounded-xl p-3 whitespace-pre-wrap break-all font-mono`}
               >
 {`GET /pxp-102/status?issuer=0xISSUER_BYTES32&nullifier=0xNULLIFIER_BYTES32
 → { currentRoot, nullifierUsed, ... }`}
@@ -413,7 +416,7 @@ function App() {
         {/* Production & security notes */}
         <section
           id="production"
-          className={`mt-8 mb-6 rounded-2xl border ${borderStrong} ${sectionBg} p-4 sm:p-5`}
+          className={`mt-8 mb-6 rounded-2xl border ${borderStrong} ${sectionBg} p-4 sm:p-5 w-full`}
         >
           <h3 className="text-lg font-semibold mb-2">
             Production & security notes
@@ -428,17 +431,17 @@ function App() {
             backend and never expose long-lived API keys in frontend code.
           </p>
 
-          <div className="grid gap-4 md:grid-cols-2 text-xs sm:text-sm text-slate-300">
+          <div className="grid gap-4 md:grid-cols-2 text-xs sm:text-sm text-slate-300 w-full">
             <div className="space-y-2">
               <h4 className="text-sm font-semibold">Frontend config (Vite)</h4>
               <ol className="list-decimal list-inside space-y-1">
                 <li>
                   Set{" "}
-                  <span className="font-mono text-privacyx">
+                  <span className="font-mono text-privacyx break-all">
                     VITE_PXP102_STATUS_API_BASE_URL
                   </span>{" "}
                   to your backend or gateway URL, e.g.:{" "}
-                  <span className="font-mono">
+                  <span className="font-mono break-all">
                     https://api.your-domain.com
                   </span>
                   .
@@ -449,7 +452,7 @@ function App() {
                 </li>
                 <li>
                   The dApp will call{" "}
-                  <span className="font-mono">
+                  <span className="font-mono break-all">
                     $VITE_PXP102_STATUS_API_BASE_URL/pxp-102/status
                   </span>{" "}
                   instead of the reference endpoint.
@@ -487,7 +490,7 @@ function App() {
 
         {/* Footer */}
         <footer
-          className={`border-t ${borderStrong} pt-4 mt-6 text-[11px] ${textMuted} flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2`}
+          className={`border-t ${borderStrong} pt-4 mt-6 text-[11px] ${textMuted} flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 w-full`}
         >
           <span>PrivacyX · Identity layer for Web3 anonymity.</span>
           <span className="text-slate-600">

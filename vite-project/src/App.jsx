@@ -1,19 +1,90 @@
+import React, { useState } from "react";
 import "./index.css";
 import DevelopersSection from "./components/DevelopersSection";
 import logo from "./assets/logo-prvx.png";
 
+// Icône Soleil (Light mode) – style Privacyx #4befa0
+const SunIcon = () => (
+  <svg
+    className="w-4 h-4 md:w-4 md:h-4"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="#4befa0"
+    strokeWidth="1.8"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <circle cx="12" cy="12" r="4" />
+    <line x1="12" y1="2" x2="12" y2="4" />
+    <line x1="12" y1="20" x2="12" y2="22" />
+    <line x1="4.93" y1="4.93" x2="6.34" y2="6.34" />
+    <line x1="17.66" y1="17.66" x2="19.07" y2="19.07" />
+    <line x1="2" y1="12" x2="4" y2="12" />
+    <line x1="20" y1="12" x2="22" y2="12" />
+    <line x1="4.93" y1="19.07" x2="6.34" y2="17.66" />
+    <line x1="17.66" y1="6.34" x2="19.07" y2="4.93" />
+  </svg>
+);
+
+// Icône Lune (Dark mode) – style Privacyx #4befa0
+const MoonIcon = () => (
+  <svg
+    className="w-4 h-4 md:w-4 md:h-4"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="#4befa0"
+    strokeWidth="1.8"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M21 12.79A9 9 0 0 1 12.21 3 7 7 0 0 0 12 17a7 7 0 0 0 9-4.21Z" />
+  </svg>
+);
+
+function ThemeToggle({ darkMode, setDarkMode }) {
+  return (
+    <button
+      onClick={() => setDarkMode(!darkMode)}
+      className={`inline-flex items-center justify-center text-sm px-2 py-1 rounded-xl border transition-colors ${
+        darkMode ? "border-white/10 bg-white/5" : "border-gray-200 bg-white"
+      }`}
+      aria-label="Toggle theme"
+    >
+      {darkMode ? <SunIcon /> : <MoonIcon />}
+    </button>
+  );
+}
+
 function App() {
+  const [darkMode, setDarkMode] = useState(true);
+
+  const textPrimary = darkMode ? "text-slate-100" : "text-slate-900";
+  const textSecondary = darkMode ? "text-slate-400" : "text-slate-500";
+  const textMuted = darkMode ? "text-slate-500" : "text-slate-500";
+  const borderSubtle = darkMode ? "border-slate-700" : "border-slate-200";
+  const borderStrong = darkMode ? "border-slate-800" : "border-slate-300";
+  const cardBg = darkMode ? "bg-black/40" : "bg-white";
+  const sectionBg = darkMode ? "bg-black/40" : "bg-white";
+  const headerShadow = darkMode
+    ? "shadow-lg shadow-privacyx/40"
+    : "shadow-md shadow-gray-300/40";
+  const statusPillBorder = darkMode ? "border-slate-700" : "border-slate-300";
+  const statusBadgeBorder = darkMode ? "border-slate-600" : "border-slate-300";
+  const statusBadgeText = darkMode ? "text-slate-200" : "text-slate-700";
+
   return (
     <div
-      className="min-h-screen text-slate-100"
-      style={{ backgroundColor: "#101010" }}
+      className={`min-h-screen w-full overflow-x-hidden transition-colors duration-300 ${textPrimary}`}
+      style={{ backgroundColor: darkMode ? "#101010" : "#f5f5f5" }}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-10">
         {/* Header */}
         <header className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between mb-8 sm:mb-10">
           <div className="flex items-center gap-2">
             {/* LOGO */}
-            <div className="h-9 w-9 rounded-xl bg-black/40 flex items-center justify-center shadow-lg shadow-privacyx/40">
+            <div
+              className={`h-9 w-9 rounded-xl flex items-center justify-center ${cardBg} ${headerShadow}`}
+            >
               <img
                 src={logo}
                 alt="PrivacyX Logo"
@@ -25,21 +96,27 @@ function App() {
               <h1 className="text-base sm:text-lg font-semibold tracking-tight">
                 Privacyx · PXP-102 Identity Pass
               </h1>
-              <p className="text-[11px] sm:text-xs text-slate-400">
+              <p className={`text-[11px] sm:text-xs ${textSecondary}`}>
                 Groth16 on-chain identity primitive for Web3 integrators
               </p>
             </div>
           </div>
 
           {/* Desktop nav */}
-          <div className="hidden sm:flex items-center gap-3 text-xs text-slate-400">
+          <div
+            className={`hidden sm:flex items-center gap-3 text-xs ${textSecondary}`}
+          >
             <span className="h-1.5 w-1.5 rounded-full bg-privacyx" />
             <span>Mainnet live</span>
             <a
               href="https://www.privacyx.tech/pxp-102"
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center rounded-lg border border-slate-700 px-2.5 py-1 text-[11px] text-slate-200 hover:border-slate-400 hover:text-slate-100 transition"
+              className={`inline-flex items-center rounded-lg border px-2.5 py-1 text-[11px] transition ${
+                darkMode
+                  ? "border-slate-700 text-slate-200 hover:border-slate-400 hover:text-slate-100"
+                  : "border-slate-300 text-slate-800 hover:border-slate-500 hover:text-slate-900 bg-white"
+              }`}
             >
               Docs
             </a>
@@ -47,22 +124,33 @@ function App() {
               href="https://github.com/Privacyx-org/privacyx-identity-pass"
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center rounded-lg border border-slate-700 px-2.5 py-1 text-[11px] text-slate-200 hover:border-slate-400 hover:text-slate-100 transition"
+              className={`inline-flex items-center rounded-lg border px-2.5 py-1 text-[11px] transition ${
+                darkMode
+                  ? "border-slate-700 text-slate-200 hover:border-slate-400 hover:text-slate-100"
+                  : "border-slate-300 text-slate-800 hover:border-slate-500 hover:text-slate-900 bg-white"
+              }`}
             >
               GitHub
             </a>
+            <ThemeToggle darkMode={darkMode} setDarkMode={setDarkMode} />
           </div>
 
           {/* Mobile nav */}
-          <div className="flex sm:hidden items-center gap-2 text-[11px] text-slate-400">
+          <div
+            className={`flex sm:hidden items-center gap-2 text-[11px] ${textSecondary}`}
+          >
             <span className="h-1.5 w-1.5 rounded-full bg-privacyx" />
             <span>Mainnet live</span>
-            <div className="ml-auto flex gap-2">
+            <div className="ml-auto flex gap-2 items-center">
               <a
                 href="https://www.privacyx.tech/pxp-102"
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center rounded-lg border border-slate-700 px-2 py-1 text-[11px] text-slate-200 hover:border-slate-400 hover:text-slate-100 transition"
+                className={`inline-flex items-center rounded-lg border px-2 py-1 text-[11px] transition ${
+                  darkMode
+                    ? "border-slate-700 text-slate-200 hover:border-slate-400 hover:text-slate-100"
+                    : "border-slate-300 text-slate-800 hover:border-slate-500 hover:text-slate-900 bg-white"
+                }`}
               >
                 Docs
               </a>
@@ -70,10 +158,15 @@ function App() {
                 href="https://github.com/Privacyx-org/privacyx-identity-pass"
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center rounded-lg border border-slate-700 px-2 py-1 text-[11px] text-slate-200 hover:border-slate-400 hover:text-slate-100 transition"
+                className={`inline-flex items-center rounded-lg border px-2 py-1 text-[11px] transition ${
+                  darkMode
+                    ? "border-slate-700 text-slate-200 hover:border-slate-400 hover:text-slate-100"
+                    : "border-slate-300 text-slate-800 hover:border-slate-500 hover:text-slate-900 bg-white"
+                }`}
               >
                 GitHub
               </a>
+              <ThemeToggle darkMode={darkMode} setDarkMode={setDarkMode} />
             </div>
           </div>
         </header>
@@ -81,7 +174,9 @@ function App() {
         {/* Hero */}
         <section className="grid gap-8 md:grid-cols-[2fr,1.4fr] mb-10 sm:mb-12">
           <div>
-            <p className="inline-flex items-center gap-2 rounded-full border border-slate-700 bg-black/40 px-3 py-1 text-[11px] sm:text-xs text-privacyx mb-4">
+            <p
+              className={`inline-flex items-center gap-2 rounded-full border ${borderSubtle} ${cardBg} px-3 py-1 text-[11px] sm:text-xs text-privacyx mb-4`}
+            >
               <span className="h-1.5 w-1.5 rounded-full bg-privacyx" />
               PXP-102 · Zero-knowledge identity pass
             </p>
@@ -109,26 +204,32 @@ function App() {
               </a>
               <a
                 href="#status-api"
-                className="inline-flex items-center justify-center rounded-xl border border-slate-600/80 bg-black/40 px-4 py-2 text-sm text-slate-100 hover:border-slate-400 transition w-full sm:w-auto"
+                className={`inline-flex items-center justify-center rounded-xl border ${borderSubtle} ${cardBg} px-4 py-2 text-sm ${textPrimary} hover:border-slate-400 transition w-full sm:w-auto`}
               >
                 Check status API
               </a>
             </div>
 
             <div className="grid gap-4 sm:grid-cols-3 text-xs sm:text-sm">
-              <div className="rounded-xl border border-slate-700 bg-black/40 p-3">
+              <div
+                className={`rounded-xl border ${borderSubtle} ${cardBg} p-3`}
+              >
                 <p className="text-slate-400 mb-1">Standard</p>
                 <p className="font-medium">PXP-102 Identity Pass</p>
                 <p className="text-slate-500 mt-1">Groth16 + Merkle nullifier</p>
               </div>
-              <div className="rounded-xl border border-slate-700 bg-black/40 p-3">
+              <div
+                className={`rounded-xl border ${borderSubtle} ${cardBg} p-3`}
+              >
                 <p className="text-slate-400 mb-1">Network</p>
                 <p className="font-medium">Ethereum mainnet</p>
                 <p className="text-slate-500 mt-1 text-xs">
                   IdentityPass deployed & initialized
                 </p>
               </div>
-              <div className="rounded-xl border border-slate-700 bg-black/40 p-3">
+              <div
+                className={`rounded-xl border ${borderSubtle} ${cardBg} p-3`}
+              >
                 <p className="text-slate-400 mb-1">Usage model</p>
                 <p className="font-medium">Backend / dApp primitive</p>
                 <p className="text-slate-500 mt-1 text-xs">
@@ -141,11 +242,13 @@ function App() {
           {/* Status API card */}
           <div
             id="status-api"
-            className="rounded-2xl border border-slate-700 bg-gradient-to-b from-black/60 to-neutral-900/80 p-4 sm:p-5 shadow-lg shadow-black/40"
+            className={`rounded-2xl border ${borderSubtle} bg-gradient-to-b from-black/60 to-neutral-900/80 p-4 sm:p-5 shadow-lg shadow-black/40`}
           >
             <h3 className="text-sm font-semibold mb-2 flex items-center gap-2">
               PXP-102 Identity Status API
-              <span className="text-[10px] rounded-full border border-slate-600 px-2 py-0.5 text-slate-200 bg-black/40">
+              <span
+                className={`text-[10px] rounded-full border ${statusBadgeBorder} px-2 py-0.5 ${statusBadgeText} ${cardBg}`}
+              >
                 Mainnet
               </span>
             </h3>
@@ -162,7 +265,9 @@ function App() {
               <p className="text-[11px] text-slate-400 mb-1">
                 Example (reference deployment: identitypass-api.privacyx.tech)
               </p>
-              <pre className="text-[11px] bg-black/70 border border-slate-700 rounded-xl p-3 overflow-x-auto">
+              <pre
+                className={`text-[11px] ${cardBg} border ${borderSubtle} rounded-xl p-3 overflow-x-auto`}
+              >
 {`curl -H "x-api-key: YOUR_API_KEY" \\
   "https://identitypass-api.privacyx.tech/pxp-102/status/default"`}
               </pre>
@@ -171,7 +276,9 @@ function App() {
             <div className="text-[11px] text-slate-400 mb-1">
               Typical JSON response:
             </div>
-            <pre className="text-[11px] bg-black/70 border border-slate-700 rounded-xl p-3 overflow-x-auto">
+            <pre
+              className={`text-[11px] ${cardBg} border ${borderSubtle} rounded-xl p-3 overflow-x-auto`}
+            >
 {`{
   "network": "mainnet",
   "contractAddress": "0x2b88...",
@@ -218,7 +325,9 @@ function App() {
           <div id="integrations">
             <h3 className="text-lg font-semibold mb-3">Integration patterns</h3>
             <div className="space-y-3 text-sm text-slate-300">
-              <div className="rounded-xl border border-slate-700 bg-black/40 p-3">
+              <div
+                className={`rounded-xl border ${borderSubtle} ${cardBg} p-3`}
+              >
                 <h4 className="text-sm font-semibold mb-1">
                   A) Web2 / Web3 access-control
                 </h4>
@@ -228,7 +337,9 @@ function App() {
                   proven its identity at least once.
                 </p>
               </div>
-              <div className="rounded-xl border border-slate-700 bg-black/40 p-3">
+              <div
+                className={`rounded-xl border ${borderSubtle} ${cardBg} p-3`}
+              >
                 <h4 className="text-sm font-semibold mb-1">
                   B) dApps & DeFi frontends
                 </h4>
@@ -237,7 +348,9 @@ function App() {
                   relayer, while keeping the user experience on your own UI.
                 </p>
               </div>
-              <div className="rounded-xl border border-slate-700 bg-black/40 p-3">
+              <div
+                className={`rounded-xl border ${borderSubtle} ${cardBg} p-3`}
+              >
                 <h4 className="text-sm font-semibold mb-1">
                   C) Issuer dashboards
                 </h4>
@@ -251,7 +364,9 @@ function App() {
         </section>
 
         {/* Quick integration guide */}
-        <section className="mb-10 sm:mb-12 rounded-2xl border border-slate-800 bg-black/40 p-4 sm:p-5">
+        <section
+          className={`mb-10 sm:mb-12 rounded-2xl border ${borderStrong} ${sectionBg} p-4 sm:p-5`}
+        >
           <h3 className="text-lg font-semibold mb-2">
             Integrate PXP-102 in 3 steps
           </h3>
@@ -277,7 +392,9 @@ function App() {
               <span className="font-semibold">Your backend checks the nullifier.</span>{" "}
               After a successful on-chain verification, your backend can simply
               call the PXP-102 Status API:
-              <pre className="mt-2 text-[11px] bg-black/70 border border-slate-700 rounded-xl p-3 overflow-x-auto font-mono">
+              <pre
+                className={`mt-2 text-[11px] ${cardBg} border ${borderSubtle} rounded-xl p-3 overflow-x-auto font-mono`}
+              >
 {`GET /pxp-102/status?issuer=0xISSUER_BYTES32&nullifier=0xNULLIFIER_BYTES32
 → { currentRoot, nullifierUsed, ... }`}
               </pre>
@@ -296,7 +413,7 @@ function App() {
         {/* Production & security notes */}
         <section
           id="production"
-          className="mt-8 mb-6 rounded-2xl border border-slate-800 bg-black/40 p-4 sm:p-5"
+          className={`mt-8 mb-6 rounded-2xl border ${borderStrong} ${sectionBg} p-4 sm:p-5`}
         >
           <h3 className="text-lg font-semibold mb-2">
             Production & security notes
@@ -369,11 +486,12 @@ function App() {
         </section>
 
         {/* Footer */}
-        <footer className="border-t border-slate-800 pt-4 mt-6 text-[11px] text-slate-500 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+        <footer
+          className={`border-t ${borderStrong} pt-4 mt-6 text-[11px] ${textMuted} flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2`}
+        >
           <span>PrivacyX · Identity layer for Web3 anonymity.</span>
           <span className="text-slate-600">
-            PXP-102 · Groth16 · mainnet primitive ·{" "}
-            <span className="text-privacyx">#4befa0</span>
+            PXP-102 · Groth16 · mainnet primitive · PrivacyX green accent
           </span>
         </footer>
       </div>

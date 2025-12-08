@@ -4,7 +4,10 @@ import logo from "./assets/logo-prvx.png";
 
 function App() {
   return (
-    <div className="min-h-screen bg-privacyx-dark text-slate-100">
+    <div
+      className="min-h-screen text-slate-100"
+      style={{ backgroundColor: "#101010" }}
+    >
       <div className="max-w-6xl mx-auto px-4 py-10">
         {/* Header */}
         <header className="flex items-center justify-between mb-10">
@@ -113,7 +116,7 @@ function App() {
           {/* Status API card */}
           <div
             id="status-api"
-            className="rounded-2xl border border-privacyx/30 bg-gradient-to-b from-black/60 to-slate-900/80 p-4 sm:p-5 shadow-lg shadow-black/40"
+            className="rounded-2xl border border-privacyx/30 bg-gradient-to-b from-black/60 to-neutral-900/80 p-4 sm:p-5 shadow-lg shadow-black/40"
           >
             <h3 className="text-sm font-semibold mb-2 flex items-center gap-2">
               PXP-102 Identity Status API
@@ -342,10 +345,9 @@ function App() {
 
         {/* Footer */}
         <footer className="border-t border-slate-800 pt-4 mt-6 text-[11px] text-slate-500 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
-          <span>PrivacyX · Identity layer for Web3 anonymity.</span>
+          <span>Privacyx · Identity layer for Web3 anonymity.</span>
           <span className="text-slate-600">
-            PXP-102 · Groth16 · mainnet primitive ·{" "}
-            <span className="text-privacyx">#4befa0</span>
+            PXP-102 · Groth16 · mainnet primitive
           </span>
         </footer>
       </div>
@@ -354,3 +356,4 @@ function App() {
 }
 
 export default App;
+

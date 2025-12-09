@@ -211,8 +211,7 @@ function App() {
               >
                 View integration options
               </a>
-            <
-              a
+              <a
                 href="#status-api"
                 className={`inline-flex items-center justify-center rounded-xl border ${borderSubtle} ${cardBg} px-4 py-2 text-sm ${textPrimary} hover:border-slate-400 transition w-full sm:w-auto`}
               >
@@ -272,7 +271,11 @@ function App() {
           {/* Status API card */}
           <div
             id="status-api"
-            className={`rounded-2xl border ${borderSubtle} bg-gradient-to-b from-neutral-950/80 to-neutral-900/80 p-4 sm:p-5 shadow-lg shadow-black/40 w-full`}
+            className={`rounded-2xl border ${borderSubtle} ${
+              darkMode
+                ? "bg-gradient-to-b from-neutral-950/80 to-neutral-900/80"
+                : cardBg
+            } p-4 sm:p-5 shadow-lg shadow-black/40 w-full`}
           >
             <h3 className="text-sm font-semibold mb-2 flex flex-wrap items-center gap-2">
               <span>PXP-102 Identity Status API</span>
@@ -400,7 +403,7 @@ function App() {
           </div>
         </section>
 
-        {/* Developer integration examples – replaces old DevelopersSection with fully responsive content */}
+        {/* Developer integration examples */}
         <section
           id="developers"
           className={`mb-10 sm:mb-12 rounded-2xl border ${borderStrong} ${sectionBg} p-4 sm:p-5 w-full`}
@@ -586,9 +589,9 @@ privacyx-sdk / examples / identity-pass-local-hardhat.example.mjs`}
         <footer
           className={`border-t ${borderStrong} pt-4 mt-6 text-[11px] ${textMuted} flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 w-full`}
         >
-          <span>PrivacyX · Identity layer for Web3 anonymity.</span>
+          <span>Privacyx · Identity layer for Web3 anonymity.</span>
           <span className="text-slate-600">
-            PXP-102 · Groth16 · mainnet primitive · PrivacyX green accent
+            PXP-102 · Groth16 · mainnet primitive
           </span>
         </footer>
       </div>
